@@ -10,7 +10,7 @@
 label* gLabel;          // Global label pointer. Global so we can fnid it later.
 
 
-// callback, I HATE callbacks, but other love em. Hers'an example..
+// callback for the first button..
 void firstButton(void) {
 
    gLabel->setValue("Howdy!");
@@ -23,8 +23,17 @@ void secondButton(void) {
 }
 
 
-// Your setup() gets quite large. This is where we not only stat up the hardware, but typically
+// Your setup() gets quite large. This is where we not only set up the hardware, but typically
 // we also populate the screen with its drawObj(s).
+//
+// NOTE : This is just a single screen application. This is why you add all your screen items
+// directly using viewList.addObj(). Later, if you decided to use multiple screens (panels)
+// you will NOT use viewList but just the addObj() method of your local panel. Does this make
+// sense to you? Of course not! You are probably overwhelmed trying to get this thing to work
+// at all. Just remember. When it does come time for multiple panel application, you should
+// never use viewList.addObj() again.
+
+
 void setup() {
 
    // First thing, lets set up and get our stuff running.
