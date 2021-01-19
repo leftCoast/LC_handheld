@@ -1,13 +1,22 @@
-#include "adafruit_1947_Obj.h"
-#include "screen.h"
-#include "eventMgr.h"
-#include "flasher.h"
-#include "label.h"
-#include "colorRect.h"
+#include "adafruit_1947_Obj.h"	// Our "gluecode" for the Adafruit Model # 1947 Cap. touch screen.
+#include "screen.h"					// This gives you the screen object that does all your drawing.
+#include "eventMgr.h"				// Code to manage the touch screen and gives invents to process.
+#include "flasher.h"					// Code for an object for the screen that "blinks".
+#include "label.h"					// Code for an object for the screen that is a text label.
+#include "colorRect.h"				// Code for an object for the screen that is a colored rectangle.
 
 
+// *********
+//
+// This is just scratching the surface of what you can do. Single screen, no SD drive for
+// images, no Beeper.. Later, when you decide you want more than one screen (panel) for the
+// user to switch use, It'll be time to learn about litleOS. This allows multiple sketches
+// to be loaded with each having their own screen for the user to interact with.
+//
+// *********
 
-label* gLabel;          // Global label pointer. Global so we can fnid it later.
+
+label* gLabel;          // Global label pointer. Global so we can find it later.
 
 
 // callback for the first button..
@@ -16,6 +25,7 @@ void firstButton(void) {
    gLabel->setValue("Howdy!");
 }
 
+
 // Another callback..
 void secondButton(void) {
 
@@ -23,8 +33,8 @@ void secondButton(void) {
 }
 
 
-// Your setup() gets quite large. This is where we not only set up the hardware, but typically
-// we also populate the screen with its drawObj(s).
+// Your setup() gets quite large. This is where we not only set up the hardware, but
+// typically we also populate the screen with its drawObj(s).
 //
 // NOTE : This is just a single screen application. This is why you add all your screen items
 // directly using viewList.addObj(). Later, if you decided to use multiple screens (panels)
@@ -74,10 +84,10 @@ void setup() {
 
    // NOTE : We created these flashers on the heap, as we must. Then, we just tossed the objects into viewList and dropped the pointers.
    // Typically this is the way you populate your display. If you need to interact with one of these objects, you have to keep a pointer
-   // to it around so you can access it later. If you plan on deleting one of these objects, you also need to keep a pinter to it is so
+   // to it around so you can access it later. If you plan on deleting one of these objects, you also need to keep a pointer to it is so
    // you can do that.
    //
-   // This is a special case using only a single screen. Later, when you decide you want multiple screens (called "panels") you will
+   // This is a special case using only a single screen. Later, when you decide you want multiple screens (called "panels"), you will
    // probaby never deal with deleting drawObj(s). (Everything we are putting on the display are drawObj(s)) This is because, when you
    // swap panels, the disposal of all the drawObj(s) is handled automatically.
    
@@ -129,7 +139,7 @@ void setup() {
 
    // Everything is set up. there is basically nothing left to do. Once you have it set up it all runs by itslef in the
    // background. That is what the call to idle() is for. And why you should NEVR use delay() once you start down this path.
-   // Actually I do use delay, but for maybe a milisecond. And I have massive guilt whenever I do.
+   // Actually, I do use delay, but for maybe a milisecond. And I have massive guilt whenever I do.
    //
    // What you have here is just some of the basic building blocks for drawObj(s) that can go on the screen. Typically these are
    // just starting points of what you actualy want on the screen. Every drawObj has a virtual doAction() method you can fill out
